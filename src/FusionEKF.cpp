@@ -126,17 +126,17 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 			ekf_.x_(3) = 0;
 			cout << "state variable created for lidar" << endl;
 			// done initializing, no need to predict or update
-			is_initialized_ = true;
+			
 			ekf_.P_ << 1, 0, 0, 0,
 				0, 1, 0, 0,
 				0, 0, 1000, 0,
 				0, 0, 0, 1000;
 			cout << "state covariance variable created for lidar" << endl;
-			return;
+			
 		}
-
+		is_initialized_ = true;
 		cout << "done with initial measurement" << endl;
-		
+		return;
 	}
 
 	/**

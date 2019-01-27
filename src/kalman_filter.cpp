@@ -44,6 +44,7 @@ void KalmanFilter::Update(const VectorXd &z) {
    * TODO: update the state by using Kalman Filter equations
    */
   std::cout << "H size: " << H_.rows() << "x" << H_.cols() << std::endl;
+  std::cout << H_ << std::endl;
   std::cout << "Z size: " << z.rows() << "x" << z.cols() << std::endl;
   VectorXd y_ = z-H_*x_prime_;
   std::cout << "y calculated" << std::endl;

@@ -43,7 +43,8 @@ void KalmanFilter::Update(const VectorXd &z) {
   /**
    * TODO: update the state by using Kalman Filter equations
    */
-  std::cout << z.size() << std::endl;
+  std::cout << "H size: " << h.size() << std::endl;
+  std::cout << "Z size: " << z.size() << std::endl;
   VectorXd y_ = z-H_*x_prime_;
   std::cout << "y calculated" << std::endl;
   MatrixXd S_ = H_ * P_prime_ * H_.transpose() + R_;

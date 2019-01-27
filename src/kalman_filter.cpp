@@ -1,5 +1,7 @@
 #include "kalman_filter.h"
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
@@ -84,6 +86,16 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 	}
 
 	VectorXd y_ = z - h_;
+	if (y_(1) < -M_PI) {
+		while (y_(1) < M_PI) {
+			y_(1) += 2 * M_PI;
+		}
+	}
+	else if (y_(1) > M_PI) {
+		while (y_(1) > M_PI) {
+			y_(1) -= 2 * M_PI;
+		}
+	}
 	MatrixXd S_ = H_ * P_prime_ * H_.transpose() + R_;
 	MatrixXd K_ = P_prime_ * H_.transpose() * S_.inverse();
 

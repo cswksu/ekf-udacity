@@ -160,7 +160,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		dt += measurement_pack.raw_measurements_(3);
 		previous_timestamp_ = measurement_pack.raw_measurements_(3);
 		R_send_ = R_radar_;
-		H_send_ = Tools::CalculateJacobian(ekf_.x_);
+		H_send_ = tools.CalculateJacobian(ekf_.x_);
 	}
 	
 	F << 1, 0, dt, 0,

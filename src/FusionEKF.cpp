@@ -30,7 +30,7 @@ long long previous_timestamp_;
 FusionEKF::FusionEKF() {
   is_initialized_ = false;
 
-  previous_timestamp_ = 0;
+  //previous_timestamp_ = 0;
 
   // initializing matrices
   R_laser_ = MatrixXd(2, 2);
@@ -91,7 +91,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		cout << "EKF: " << endl;
 		ekf_.x_ = VectorXd(4);
 		ekf_.x_ << 1, 1, 1, 1;
-		
+		previous_timestamp_ = measurement_pack.timestamp_;
 		if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 			// TODO: Convert radar from polar to cartesian coordinates 
 			//         and initialize state.
@@ -136,7 +136,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		}
 
 		cout << "done with initial measurement" << endl;
-		previous_timestamp_ = measurement_pack.timestamp_;
+		
 	}
 
 	/**

@@ -152,17 +152,16 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
 	MatrixXd R_send_;
 	MatrixXd H_send_;
+	dt += measurement_pack.timestamp_;
+	previous_timestamp_ = measurement_pack.timestamp_;
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
-		dt += measurement_pack.raw_measurements_(4);
-		previous_timestamp_ = measurement_pack.raw_measurements_(4);
+		
 		R_send_ = R_laser_;
 		H_send_ = H_laser_;
 		
 
 	}
 	else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
-		dt += measurement_pack.raw_measurements_(3);
-		previous_timestamp_ = measurement_pack.raw_measurements_(3);
 		R_send_ = R_radar_;
 		H_send_ = tools.CalculateJacobian(ekf_.x_);
 	}

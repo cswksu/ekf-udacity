@@ -1,1 +1,1 @@
-install-linux.sh
+./install-linux.sh

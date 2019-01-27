@@ -132,7 +132,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  * TODO: Update the process noise covariance matrix.
 	  * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
 	  */
-	long long dt = -previous_timestamp_
+	long long dt = -previous_timestamp_;
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		dt += measurement_pack.raw_measurements_(4);
 

@@ -43,7 +43,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
    */
   MatrixXd jac(3,4);
 
-  if x_state(0) == 0 && x_state(1)==0 {
+  if (x_state(0) == 0 && x_state(1)==0) {
 	  jac = MatrixXd::Zero(3, 4);
 	  std::cout << "Divide by zero error in Jacobian Function, returning zeros." << std::endl;
   }

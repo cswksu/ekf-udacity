@@ -104,6 +104,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 			float xDot = ro_dot * cos(theta);
 			float yDot = ro_dot * sin(theta);
 			ekf_.x_ << x, y, xDot, yDot;
+			ekf_.P_ << 1, 0, 0, 0,
+				0, 1, 0, 0,
+				0, 0, 1000*(1-cos(theta)), 0,
+				0, 0, 0, 1000*(1-sin(theta));
 
 
 
@@ -115,11 +119,19 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
 			ekf_.x_(0) = x;
 			ekf_.x_(1) = y;
+			ekf_.x_(2) = 0;
+			ekf_.x_(3) = 0;
 
 			// done initializing, no need to predict or update
 			is_initialized_ = true;
+			ekf_.P_ << 1, 0, 0, 0,
+				0, 1, 0, 0,
+				0, 0, 1000, 0,
+				0, 0, 0, 1000;
 			return;
 		}
+
+		
 	}
 
 	/**
@@ -133,13 +145,18 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
 	  */
 	long long dt = -previous_timestamp_;
+
+	R_send_ = MatrixXd();
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		dt += measurement_pack.raw_measurements_(4);
-
+		previous_timestamp_ = measurement_pack.raw_measurements_(4);
+		R_send_ = R_laser_;
 
 	}
 	else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
 		dt += measurement_pack.raw_measurements_(3);
+		previous_timestamp_ = measurement_pack.raw_measurements_(3);
+		R_send_ = R_radar_;
 	}
 	
 	F << 1, 0, dt, 0,
@@ -147,7 +164,12 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		0, 0, 1, 0,
 		0, 0, 0, 1;
 
-	ekf_.Init(ekf_.x_, P, F, H_laser_, R_laser_, Q);
+	Q << pow(dt, 4) / 4 * noise_ax, 0, pow(dt, 3) / 2 * noise_ax, 0,
+		0, pow(dt, 4) / 4 * noise_ay, 0, pow(dt, 3) / 2 * noise_ay,
+		pow(dt, 3) / 2 * noise_ax, 0, pow(dt, 2)*noise_ax, 0,
+		0, (dt, 3) / 2 * noise_ay, 0, pow(dt, 2)*noise_ay;
+
+	ekf_.Init(ekf_.x_, ekf_.P_, F, H_laser_, R_send_, Q);
 	ekf_.Predict();
 
 	/**

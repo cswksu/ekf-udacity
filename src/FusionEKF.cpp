@@ -173,7 +173,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		0, 1, 0, dt,
 		0, 0, 1, 0,
 		0, 0, 0, 1;
-
+	cout << F << endl;
+	cout << "F updated, Q next" << endl;
 	Q << pow(dt, 4) / 4 * noise_ax, 0, pow(dt, 3) / 2 * noise_ax, 0,
 		0, pow(dt, 4) / 4 * noise_ay, 0, pow(dt, 3) / 2 * noise_ay,
 		pow(dt, 3) / 2 * noise_ax, 0, pow(dt, 2)*noise_ax, 0,

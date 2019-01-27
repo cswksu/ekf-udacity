@@ -148,12 +148,15 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  * TODO: Update the process noise covariance matrix.
 	  * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
 	  */
+	cout << "update timestamp" << endl;
 	long long dt = -previous_timestamp_;
 
 	MatrixXd R_send_;
 	MatrixXd H_send_;
 	dt += measurement_pack.timestamp_;
 	previous_timestamp_ = measurement_pack.timestamp_;
+	cout << "timestampt and dt updated" << endl;
+	cout << "choose correct R and H matrices" << endl;
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		
 		R_send_ = R_laser_;
@@ -165,7 +168,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		R_send_ = R_radar_;
 		H_send_ = tools.CalculateJacobian(ekf_.x_);
 	}
-	
+	cout << "R, H chosen, update F, Q" << endl;
 	F << 1, 0, dt, 0,
 		0, 1, 0, dt,
 		0, 0, 1, 0,
@@ -175,7 +178,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		0, pow(dt, 4) / 4 * noise_ay, 0, pow(dt, 3) / 2 * noise_ay,
 		pow(dt, 3) / 2 * noise_ax, 0, pow(dt, 2)*noise_ax, 0,
 		0, (dt, 3) / 2 * noise_ay, 0, pow(dt, 2)*noise_ay;
-	cout << "initialize ekf" << endl;
+	cout << "F,Q updated, initialize ekf" << endl;
 	ekf_.Init(ekf_.x_, ekf_.P_, F, H_send_, R_send_, Q);
 	cout << "initialized, begin prediction step" << endl;
 	ekf_.Predict();

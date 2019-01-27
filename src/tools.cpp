@@ -12,18 +12,19 @@ Tools::Tools() {}
 Tools::~Tools() {}
 
 VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
-                              const vector<VectorXd> &ground_truth) {
-  /**
-   * TODO: Calculate the RMSE here.
-   */
-  float rmse=0;
-  VectorXd rmseV(estimations.size());
-  
-  for (int i=0; i<estimations.size(); ++i) {
-    rmse+=pow(estimations[i]-ground_truth(i),2);
-    rmseV[i]=pow(rmse/i,0.5);
-  
-  return rmseV;
+	const vector<VectorXd> &ground_truth) {
+	/**
+	 * TODO: Calculate the RMSE here.
+	 */
+	float rmse = 0;
+	VectorXd rmseV(estimations.size());
+
+	for (int i = 0; i < estimations.size(); ++i) {
+		rmse += pow(estimations[i] - ground_truth[i], 2);
+		rmseV[i] = pow(rmse / i, 0.5);
+
+		return rmseV;
+	}
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {

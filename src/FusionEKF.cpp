@@ -187,7 +187,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	//cout << "F,Q updated, initialize ekf" << endl;
 	ekf_.Init(ekf_.x_, ekf_.P_, F, H_send_, R_send_, Q);
 	cout << "initialized, begin prediction step" << endl;
-	ekf_.Predict();
+	//ekf_.Predict();
 	//cout << "end prediction step" << endl;
 
 	/**
@@ -202,13 +202,15 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		// TODO: Radar updates
-		cout << "begin radar update" << endl;
-		ekf_.UpdateEKF(measurement_pack.raw_measurements_);
+		//cout << "begin radar update" << endl;
+		//ekf_.UpdateEKF(measurement_pack.raw_measurements_);
 	}
 	else {
 		// TODO: Laser updates
-		//cout << "begin lidar update" << endl;
-		//ekf_.Update(measurement_pack.raw_measurements_);
+		ekf_.Predict();
+		cout << "begin lidar update" << endl;
+		ekf_.Update(measurement_pack.raw_measurements_);
+		
 		//cout << "lidar update successful" << endl;
 	}
 

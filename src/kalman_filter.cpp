@@ -3,6 +3,9 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
+MatrixXd P_, P_prime_, F_, H_, R_, Q_;
+VectorXd x_, x_prime_;
+
 /* 
  * Please note that the Eigen library does not initialize 
  *   VectorXd or MatrixXd objects with zeros upon creation.
@@ -41,7 +44,7 @@ void KalmanFilter::Update(const VectorXd &z) {
 
   x_=x_prime_ + K_ * y_;
   MatrixXd kh_=K_*h_;
-  MatrixXd iden_ = MatrixXD::Identity(kh_.rows(),kh_.cols());
+  MatrixXd iden_ = MatrixXd::Identity(kh_.rows(),kh_.cols());
   P_=(iden_-kh_) * P_prime_;
 
 

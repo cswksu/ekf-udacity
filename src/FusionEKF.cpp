@@ -150,12 +150,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
 	  */
 	cout << "update timestamp" << endl;
-	float dt = -previous_timestamp_;
-	cout << dt << endl;
 
 	MatrixXd R_send_;
 	MatrixXd H_send_;
-	dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
+	float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
 	cout << dt << endl;
 	previous_timestamp_ = measurement_pack.timestamp_;
 	cout << "timestamp and dt updated" << endl;

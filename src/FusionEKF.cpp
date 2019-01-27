@@ -68,7 +68,7 @@ FusionEKF::FusionEKF() {
 	  0, 1, 0, 1,
 	  0, 0, 1, 0,
 	  0, 0, 0, 1;
-
+  cout << "constructor called" << endl;
 }
 
 /**

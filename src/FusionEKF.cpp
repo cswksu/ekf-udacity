@@ -21,6 +21,7 @@ MatrixXd P;
 MatrixXd F;
 MatrixXd R;
 MatrixXd Q;
+long long previous_timestamp_;
 
 
 /**
@@ -131,6 +132,21 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  * TODO: Update the process noise covariance matrix.
 	  * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
 	  */
+	long long dt = -previous_timestamp_
+	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
+		dt += measurement_pack.raw_measurements_(4);
+
+
+	}
+	else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
+		dt += measurement_pack.raw_measurements_(3);
+	}
+	
+	F << 1, 0, dt, 0,
+		0, 1, 0, dt,
+		0, 0, 1, 0,
+		0, 0, 0, 1;
+
 	ekf_.Init(ekf_.x_, P, F, H_laser_, R_laser_, Q);
 	ekf_.Predict();
 

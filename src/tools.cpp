@@ -33,6 +33,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 	}
 	rmse = rmse / estimations.size();
 	rmse = rmse.array().sqrt();
+	std::cout << "RMSE successfully calculated" << std::endl;
 	return rmse;
 }
 

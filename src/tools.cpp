@@ -21,7 +21,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   
   for (int i=0; i<estimations.size(); ++i) {
     rmse+=pow(estimations[i]-ground_truth(i),2);
-    rmseV[i)=pow(rmse/i,0.5);
+    rmseV[i]=pow(rmse/i,0.5);
   
   return rmseV;
 }

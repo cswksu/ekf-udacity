@@ -34,16 +34,16 @@ void KalmanFilter::Predict() {
    * TODO: predict the state
    */
   x_prime_ = F_ * x_;
-  std::cout << x_prime_.size() << std::cout;
+  std::cout << x_prime_.size() << std::endl;
   P_prime_ = F_ * P_ * F_.transpose()+Q_;
-  std::cout << P_prime_.size() << std::cout;
+  std::cout << P_prime_.size() << std::endl;
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
   /**
    * TODO: update the state by using Kalman Filter equations
    */
-  std::cout << z.size() << std::cout;
+  std::cout << z.size() << std::endl;
   VectorXd y_ = z-H_*x_prime_;
   std::cout << "y calculated" << std::endl;
   MatrixXd S_ = H_ * P_prime_ * H_.transpose() + R_;

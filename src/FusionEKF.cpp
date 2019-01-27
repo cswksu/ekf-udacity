@@ -134,8 +134,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 			cout << "state covariance variable created for lidar" << endl;
 			return;
 		}
+
 		cout << "done with initial measurement" << endl;
-		
+		previous_timestamp_ = measurement_pack.timestamp_;
 	}
 
 	/**

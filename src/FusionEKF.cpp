@@ -10,6 +10,19 @@ using std::cout;
 using std::endl;
 using std::vector;
 
+MatrixXd R_laser_;
+MatrixXd R_radar_;
+MatrixXd H_laser_;
+MatrixXd Hj_;
+float noise_ax;
+float noise_ay;
+KalmanFilter ekf_;
+MatrixXd P;
+MatrixXd F;
+MatrixXd R;
+MatrixXd Q;
+
+
 /**
  * Constructor.
  */
@@ -40,8 +53,8 @@ FusionEKF::FusionEKF() {
    * TODO: Finish initializing the FusionEKF.
    * TODO: Set the process and measurement noises
    */
-  float noise_ax=9.0;
-  float noise_ay=9.0;
+  noise_ax=9.0;
+  noise_ay=9.0;
 
   ekf_=KalmanFilter();
   

@@ -18,13 +18,17 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 	 */
 	float rmse = 0;
 	VectorXd rmseV(estimations.size());
+	VectorXd diff(estimations.size());
 
+	diff = estimations - ground_truth;
+	diff = diff.pow(2);
+
+	
 	for (int i = 0; i < estimations.size(); ++i) {
-		rmse += pow(estimations[i] - ground_truth[i], 2);
-		rmseV[i] = pow(rmse / i, 0.5);
-
-		return rmseV;
+		diff[i] = diff[i] / i;
 	}
+
+	rmseV = diff.pow(0.5);
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {

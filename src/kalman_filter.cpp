@@ -43,13 +43,20 @@ void KalmanFilter::Update(const VectorXd &z) {
    * TODO: update the state by using Kalman Filter equations
    */
   VectorXd y_ = z-H_*x_prime_;
+  std::cout << "y calculated" << std::endl;
   MatrixXd S_ = H_ * P_prime_ * H_.transpose() + R_;
+  std::cout << "y calculated" << std::endl;
   MatrixXd K_ = P_prime_ * H_.transpose() * S_.inverse();
-
+  std::cout << "K calculated" << std::endl;
   x_=x_prime_ + K_ * y_;
+
+  std::cout << "x calculated" << std::endl;
   MatrixXd kh_=K_*H_;
+  std::cout << "kh" << std::endl;
   MatrixXd iden_ = MatrixXd::Identity(kh_.rows(),kh_.cols());
+  std::cout << "idendity matrix calculated" << std::endl;
   P_=(iden_-kh_) * P_prime_;
+  std::cout << "P prime calculated" << std::endl;
 
 
 

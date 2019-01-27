@@ -163,13 +163,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		
 		R_send_ = R_laser_;
-		H_send_ = H_laser_;
+		H_send_ = tools.CalculateJacobian(ekf_.x_);
+		
 		
 
 	}
 	else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
 		R_send_ = R_radar_;
-		H_send_ = tools.CalculateJacobian(ekf_.x_);
+		H_send_ = H_laser_;
 	}
 	cout << "R, H chosen, update F, Q" << endl;
 	F << 1, 0, dt, 0,

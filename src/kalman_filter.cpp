@@ -12,7 +12,10 @@ VectorXd x_, x_prime_;
  *   VectorXd or MatrixXd objects with zeros upon creation.
  */
 
-KalmanFilter::KalmanFilter() {}
+KalmanFilter::KalmanFilter() {
+	x_ = VectorXd(4);
+	P_ = MatrixXd(4, 4);
+}
 
 KalmanFilter::~KalmanFilter() {}
 

@@ -18,17 +18,17 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 	 */
 	float rmse = 0;
 	VectorXd rmseV(estimations.size());
-	VectorXd diff(estimations.size());
+	//VectorXd diff(estimations.size());
 
-	diff = estimations - ground_truth;
+	estimations -= ground_truth;
 
 	
 	for (int i = 0; i < estimations.size(); ++i) {
-		diff[i] = diff[i] * diff[i];
-		diff[i] = diff[i] / i;
+		estimations[i] = estimations[i] * estimations[i];
+		estimations[i] = estimations[i] / i;
 	}
 
-	rmseV = diff.cwiseSqrt();
+	rmseV = estimations.cwiseSqrt();
 	return rmseV;
 }
 

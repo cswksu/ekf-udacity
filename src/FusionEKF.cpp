@@ -112,7 +112,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		}
 		else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
 			// TODO: Initialize state.
-			//cout << "initializing w/ lidar measurement" << endl;
+			cout << "initializing w/ lidar measurement" << endl;
 			float x = measurement_pack.raw_measurements_(0);
 			float y = measurement_pack.raw_measurements_(1);
 

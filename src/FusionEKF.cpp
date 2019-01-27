@@ -198,7 +198,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	}
 	else {
 		// TODO: Laser updates
+		cout << "begin lidar update" << endl;
 		ekf_.Update(measurement_pack.raw_measurements_);
+		cout << "lidar update successful" << endl;
 	}
 
 	// print the output

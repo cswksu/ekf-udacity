@@ -105,11 +105,12 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 			float xDot = ro_dot * cos(theta);
 			float yDot = ro_dot * sin(theta);
 			ekf_.x_ << x, y, xDot, yDot;
+			cout << "state variable created for radar" << endl;
 			ekf_.P_ << 1, 0, 0, 0,
 				0, 1, 0, 0,
 				0, 0, 1000*(1-cos(theta)), 0,
 				0, 0, 0, 1000*(1-sin(theta));
-
+			cout << "state covariance variable created for radar" << endl;
 
 
 		}

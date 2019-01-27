@@ -146,7 +146,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  */
 	long long dt = -previous_timestamp_;
 
-	R_send_ = MatrixXd();
+	MatrixXd R_send_;
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		dt += measurement_pack.raw_measurements_(4);
 		previous_timestamp_ = measurement_pack.raw_measurements_(4);

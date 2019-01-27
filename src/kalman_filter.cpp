@@ -59,7 +59,7 @@ void KalmanFilter::Update(const VectorXd &z) {
   //std::cout << "x calculated" << std::endl;
   MatrixXd kh_=K_*H_;
   //std::cout << "kh" << std::endl;
-  MatrixXd iden_ = MatrixXd::Identity(kh_.rows(),kh_.cols());
+  MatrixXd iden_ = MatrixXd::Identity(P_.rows(),P_.cols());
   //std::cout << "idendity matrix calculated" << std::endl;
   P_=(iden_-kh_) * P_prime_;
   //std::cout << "P prime calculated" << std::endl;

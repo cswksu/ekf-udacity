@@ -34,33 +34,33 @@ void KalmanFilter::Predict() {
    * TODO: predict the state
    */
   x_prime_ = F_ * x_;
-  std::cout << "x prime size: " << x_prime_.rows() << "x" << x_prime_.cols() << std::endl;
+  //std::cout << "x prime size: " << x_prime_.rows() << "x" << x_prime_.cols() << std::endl;
   P_prime_ = F_ * P_ * F_.transpose()+Q_;
-  std::cout << P_prime_.size() << std::endl;
+  //std::cout << P_prime_.size() << std::endl;
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
   /**
    * TODO: update the state by using Kalman Filter equations
    */
-  std::cout << "H size: " << H_.rows() << "x" << H_.cols() << std::endl;
-  std::cout << H_ << std::endl;
-  std::cout << "Z size: " << z.rows() << "x" << z.cols() << std::endl;
+  //std::cout << "H size: " << H_.rows() << "x" << H_.cols() << std::endl;
+  //std::cout << H_ << std::endl;
+  //std::cout << "Z size: " << z.rows() << "x" << z.cols() << std::endl;
   VectorXd y_ = z-H_*x_prime_;
-  std::cout << "y calculated" << std::endl;
+  //std::cout << "y calculated" << std::endl;
   MatrixXd S_ = H_ * P_prime_ * H_.transpose() + R_;
-  std::cout << "y calculated" << std::endl;
+  //std::cout << "S calculated" << std::endl;
   MatrixXd K_ = P_prime_ * H_.transpose() * S_.inverse();
-  std::cout << "K calculated" << std::endl;
+  //std::cout << "K calculated" << std::endl;
   x_=x_prime_ + K_ * y_;
 
-  std::cout << "x calculated" << std::endl;
+  //std::cout << "x calculated" << std::endl;
   MatrixXd kh_=K_*H_;
-  std::cout << "kh" << std::endl;
+  //std::cout << "kh" << std::endl;
   MatrixXd iden_ = MatrixXd::Identity(kh_.rows(),kh_.cols());
-  std::cout << "idendity matrix calculated" << std::endl;
+  //std::cout << "idendity matrix calculated" << std::endl;
   P_=(iden_-kh_) * P_prime_;
-  std::cout << "P prime calculated" << std::endl;
+  //std::cout << "P prime calculated" << std::endl;
 
 
 

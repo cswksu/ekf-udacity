@@ -33,8 +33,8 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
    * Calculate a Jacobian here.
    */
   jac=MatrixXd(3,4);
-  jac(0,0)=x_state(0)/pow(pow(x_state(0),2)+pow(x_state(1),2)),0.5);
-  jac(0,1)=x_state(1)/pow(pow(x_state(0),2)+pow(x_state(1),2)),0.5);
+  jac(0,0)=x_state(0)/pow(pow(x_state(0),2)+pow(x_state(1),2),0.5);
+  jac(0,1)=x_state(1)/pow(pow(x_state(0),2)+pow(x_state(1),2),0.5);
   jac(0,2)=0;
   jac(0,3)=0;
   jac(1,0)=-x_state(1)/(pow(x_state(0),2)+pow(x_state(1),2));
@@ -43,7 +43,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
   jac(1,3)=0;
   jac(2,0)=x_state(1)*(x_state(2)*x_state(1)-x_state(3)*x_state(0))/pow(pow(x_state(0),2)+pow(x_state(1),2),1.5);
   jac(2,1)=x_state(0)*(x_state(3)*x_state(0)-x_state(2)*x_state(1))/pow(pow(x_state(0),2)+pow(x_state(1),2),1.5);
-  jac(2,2)=x_state(0)/pow(pow(x_state(0),2)+pow(x_state(1),2)),0.5);
+  jac(2,2)=x_state(0)/pow(pow(x_state(0),2)+pow(x_state(1),2),0.5);
   jac(2,3)=x_state(1)/pow(pow(x_state(0),2)+pow(x_state(1),2),0.5);
   
   return jac;

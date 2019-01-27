@@ -63,7 +63,7 @@ FusionEKF::FusionEKF() {
   P = MatrixXd(4,4);
   F = MatrixXd(4,4);
   R = MatrixXd();
-  Q = MatrixXd();
+  Q = MatrixXd(4,4);
   F << 1, 0, 1, 0,
 	  0, 1, 0, 1,
 	  0, 0, 1, 0,

@@ -153,6 +153,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
 	MatrixXd R_send_;
 	MatrixXd H_send_;
+	cout << "old timestamp: " << previous_timestamp_ / 1000000.0 << endl;
+	cout << "new timestamp: " << measurement_pack.timestamp_ / 1000000.0 << endl;
 	float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
 	cout << dt << endl;
 	previous_timestamp_ = measurement_pack.timestamp_;

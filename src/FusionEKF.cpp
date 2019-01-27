@@ -46,11 +46,14 @@ FusionEKF::FusionEKF() {
   ekf_=KalmanFilter();
   
   
-
-
-  
-  
-
+  P = MatrixXd(4,4);
+  F = MatrixXd(4,4);
+  R = MatrixXd();
+  Q = MatrixXd();
+  F << 1, 0, 1, 0,
+	  0, 1, 0, 1,
+	  0, 0, 1, 0,
+	  0, 0, 0, 1;
 
 }
 
@@ -114,7 +117,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
    * TODO: Update the process noise covariance matrix.
    * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
    */
-  ekf_.init(ekf_.x_, P, F, H, R, Q);
+  ekf_.init(ekf_.x_, P, F, H_laser_, R_laser_, Q);
   ekf_.Predict();
 
   /**

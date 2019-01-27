@@ -21,10 +21,10 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 	VectorXd diff(estimations.size());
 
 	diff = estimations - ground_truth;
-	diff = diff.dot(diff);
 
 	
 	for (int i = 0; i < estimations.size(); ++i) {
+		diff[i] = diff[i] * diff[i];
 		diff[i] = diff[i] / i;
 	}
 

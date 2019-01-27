@@ -16,7 +16,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
 	/**
 	 * TODO: Calculate the RMSE here.
 	 */
-
+	std::cout << "calculating RMSE" << std::endl;
 	VectorXd rmse(4);
 	rmse << 0, 0, 0, 0;
 
@@ -41,11 +41,13 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
    * TODO:
    * Calculate a Jacobian here.
    */
-  MatrixXd jac(3,4);
+	std::cout << "calculating jacobian" << std::endl;
+   MatrixXd jac(3,4);
 
   if (x_state(0) == 0 && x_state(1)==0) {
-	  jac = MatrixXd::Zero(3, 4);
 	  std::cout << "Divide by zero error in Jacobian Function, returning zeros." << std::endl;
+	  jac = MatrixXd::Zero(3, 4);
+	  
   }
   jac(0,0)=x_state(0)/pow(pow(x_state(0),2)+pow(x_state(1),2),0.5);
   jac(0,1)=x_state(1)/pow(pow(x_state(0),2)+pow(x_state(1),2),0.5);

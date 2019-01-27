@@ -34,7 +34,7 @@ void KalmanFilter::Predict() {
    * TODO: predict the state
    */
   x_prime_ = F_ * x_;
-  std::cout << x_prime_.size() << std::endl;
+  std::cout << "x prime size: " << x_prime_.rows() << "x" << x_prime_.cols() << std::endl;
   P_prime_ = F_ * P_ * F_.transpose()+Q_;
   std::cout << P_prime_.size() << std::endl;
 }

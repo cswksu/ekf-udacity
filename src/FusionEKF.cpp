@@ -91,7 +91,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		cout << "EKF: " << endl;
 		ekf_.x_ = VectorXd(4);
 		ekf_.x_ << 1, 1, 1, 1;
-		previous_timestamp_ = measurement_pack.timestamp_;
+		previous_timestamp_ = measurement_pack.timestamp_/ 1000000.0;
 		if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 			// TODO: Convert radar from polar to cartesian coordinates 
 			//         and initialize state.
@@ -150,14 +150,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
 	  */
 	cout << "update timestamp" << endl;
-	long long dt = -previous_timestamp_/ 1000000.0;
+	long long dt = -previous_timestamp_;
 	cout << dt << endl;
 
 	MatrixXd R_send_;
 	MatrixXd H_send_;
 	dt += measurement_pack.timestamp_/1000000.0;
 	cout << dt << endl;
-	previous_timestamp_ = measurement_pack.timestamp_;
+	previous_timestamp_ = measurement_pack.timestamp_/ 1000000.0;
 	cout << "timestamp and dt updated" << endl;
 	cout << "choose correct R and H matrices" << endl;
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {

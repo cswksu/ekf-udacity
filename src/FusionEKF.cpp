@@ -22,6 +22,7 @@ MatrixXd F;
 MatrixXd R;
 MatrixXd Q;
 long long previous_timestamp_;
+float dt;
 
 
 /**

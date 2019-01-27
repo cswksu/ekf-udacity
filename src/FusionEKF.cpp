@@ -155,7 +155,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	MatrixXd H_send_;
 	//cout << "old timestamp: " << previous_timestamp_ / 1000000.0 << endl;
 	//cout << "new timestamp: " << measurement_pack.timestamp_ / 1000000.0 << endl;
-	float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
+	//float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
+	float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0*2.0;
 	//cout << dt << endl;
 	previous_timestamp_ = measurement_pack.timestamp_;
 	//cout << "timestamp and dt updated" << endl;
@@ -206,8 +207,8 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	}
 	else {
 		// TODO: Laser updates
-		cout << "begin lidar update" << endl;
-		ekf_.Update(measurement_pack.raw_measurements_);
+		//cout << "begin lidar update" << endl;
+		//ekf_.Update(measurement_pack.raw_measurements_);
 		//cout << "lidar update successful" << endl;
 	}
 

@@ -17,7 +17,7 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
    * TODO: Calculate the RMSE here.
    */
   float rmse=0;
-  rmseV= VectorXd(estimations.size());
+  VectorXd rmseV(estimations.size());
   
   for (int i=0; i<estimations.size(); ++i) {
     rmse+=pow(estimations[i]-ground_truth(i),2);

@@ -75,7 +75,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
    */
 
 	VectorXd h_ = VectorXd(3);
-	if (x_prime_(0) != 0 and x_prime_(1) != 0) {
+	if (x_prime_(0) != 0 && x_prime_(1) != 0) {
 		h_(0) = sqrt(pow(x_prime_(0), 2) + pow(x_prime_(1), 2));
 		h_(1) = atan2(x_prime_(1), x_prime_(0));
 		h_(2) = (x_prime_(0)*x_prime_(2) + x_prime_(1)*x_prime_(3)) / h_(0);

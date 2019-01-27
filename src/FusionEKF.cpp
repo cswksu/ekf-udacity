@@ -151,12 +151,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 	  */
 	cout << "update timestamp" << endl;
 	long long dt = -previous_timestamp_;
+	cout << dt << endl;
 
 	MatrixXd R_send_;
 	MatrixXd H_send_;
 	dt += measurement_pack.timestamp_;
+	cout << dt << endl;
 	previous_timestamp_ = measurement_pack.timestamp_;
-	cout << "timestampt and dt updated" << endl;
+	cout << "timestamp and dt updated" << endl;
 	cout << "choose correct R and H matrices" << endl;
 	if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
 		

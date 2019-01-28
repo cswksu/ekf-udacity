@@ -44,7 +44,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
 
 	float c1 = pow(x_state(0), 2) + pow(x_state(1), 2);
 	float c2 = pow(c1, 0.5);
-	float c3 = pow(pow(x_state(0), 2) + pow(x_state(1), 2), 1.5)
+	float c3 = pow(pow(x_state(0), 2) + pow(x_state(1), 2), 1.5);
 	jac(0,0)=x_state(0)/c2;
 	jac(0,1)=x_state(1)/c2;
 	jac(0,2)=0;

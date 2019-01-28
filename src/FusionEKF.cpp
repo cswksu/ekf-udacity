@@ -19,6 +19,8 @@ MatrixXd R;
 MatrixXd Q;
 long long previous_timestamp_;
 
+#define noise_ax 9.0
+#define noise_ay 9.0
 
 /**
  * Constructor.
@@ -32,7 +34,6 @@ FusionEKF::FusionEKF() {
   R_laser_ = MatrixXd(2, 2);
   R_radar_ = MatrixXd(3, 3);
   H_laser_ = MatrixXd(2, 4);
-  Hj_ = MatrixXd(3, 4);
 
   //measurement covariance matrix - laser
   R_laser_ << 0.0225, 0.0,
@@ -50,15 +51,13 @@ FusionEKF::FusionEKF() {
    * TODO: Finish initializing the FusionEKF.
    * TODO: Set the process and measurement noises
    */
-  noise_ax=9.0;
-  noise_ay=9.0;
+  
 
   ekf_=KalmanFilter();
   
   
   P = MatrixXd(4,4);
   F = MatrixXd(4,4);
-  R = MatrixXd();
   Q = MatrixXd(4,4);
   //cout << "constructor called" << endl;
 }

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <functional>
 #include "Eigen/Dense"
+#include <iostream>
 
 class Tools {
  public:

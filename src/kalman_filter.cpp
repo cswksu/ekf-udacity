@@ -1,7 +1,5 @@
 #include "kalman_filter.h"
-#include <iostream>
-#define _USE_MATH_DEFINES
-#include <math.h>
+
 
 using Eigen::MatrixXd;
 using Eigen::VectorXd;

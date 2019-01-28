@@ -1,6 +1,6 @@
 #ifndef FusionEKF_H_
 #define FusionEKF_H_
-
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -9,6 +9,7 @@
 #include "measurement_package.h"
 #include "tools.h"
 #include <math.h>
+
 
 class FusionEKF {
  public:

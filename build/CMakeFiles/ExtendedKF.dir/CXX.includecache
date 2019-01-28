@@ -1019,16 +1019,10 @@ Eigen/src/Core/util/MKL_support.h
 /home/christian/EKF/ekf-udacity/src/FusionEKF.cpp
 FusionEKF.h
 /home/christian/EKF/ekf-udacity/src/FusionEKF.h
-iostream
--
-Eigen/Dense
-/home/christian/EKF/ekf-udacity/src/Eigen/Dense
-tools.h
-/home/christian/EKF/ekf-udacity/src/tools.h
-math.h
--
 
 /home/christian/EKF/ekf-udacity/src/FusionEKF.h
+iostream
+-
 fstream
 -
 string
@@ -1109,6 +1103,10 @@ kalman_filter.h
 /home/christian/EKF/ekf-udacity/src/kalman_filter.h
 Eigen/Dense
 /home/christian/EKF/ekf-udacity/src/Eigen/Dense
+iostream
+-
+math.h
+-
 
 /home/christian/EKF/ekf-udacity/src/main.cpp
 math.h
@@ -1131,12 +1129,6 @@ Eigen/Dense
 /home/christian/EKF/ekf-udacity/src/tools.cpp
 tools.h
 /home/christian/EKF/ekf-udacity/src/tools.h
-iostream
--
-algorithm
--
-functional
--
 
 /home/christian/EKF/ekf-udacity/src/tools.h
 vector
@@ -1147,4 +1139,6 @@ functional
 -
 Eigen/Dense
 /home/christian/EKF/ekf-udacity/src/Eigen/Dense
+iostream
+-
 

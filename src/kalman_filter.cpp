@@ -4,9 +4,6 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
-//MatrixXd P_, P_prime_, F_, H_, R_, Q_;
-//VectorXd x_, x_prime_;
-
 MatrixXd P_prime_;
 VectorXd x_prime_;
 

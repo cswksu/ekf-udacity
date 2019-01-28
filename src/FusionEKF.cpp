@@ -6,12 +6,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-MatrixXd R_laser_;
-MatrixXd R_radar_;
-MatrixXd H_laser_;
-MatrixXd Hj_;
-float noise_ax;
-float noise_ay;
 KalmanFilter ekf_;
 MatrixXd P;
 MatrixXd F;

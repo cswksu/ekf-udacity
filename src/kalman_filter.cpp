@@ -8,7 +8,7 @@ using Eigen::VectorXd;
 //VectorXd x_, x_prime_;
 
 MatrixXd P_prime_;
-VectorXd X_prime_;
+VectorXd x_prime_;
 
 /* 
  * Please note that the Eigen library does not initialize 

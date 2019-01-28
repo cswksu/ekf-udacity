@@ -176,10 +176,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 		0.0, 0.0, 0.0, 1.0;
 	//cout << F << endl;
 	//cout << "F updated, Q next" << endl;
-	Q << pow(dt, 4.0) / 4.0 * noise_ax, 0.0, pow(dt, 3.0) / 2.0 * noise_ax, 0.0,
-		0.0, pow(dt, 4.0) / 4.0 * noise_ay, 0.0, pow(dt, 3.0) / 2.0 * noise_ay,
-		pow(dt, 3.0) / 2.0 * noise_ax, 0.0, pow(dt, 2.0)*noise_ax, 0.0,
-		0.0, (dt, 3.0) / 2.0 * noise_ay, 0.0, pow(dt, 2.0)*noise_ay;
+
+	float dt4 = pow(dt, 4.0)/4.0;
+	float dt3 = pow(dt, 3.0)/2.0;
+	float dt2 = pow(dt, 2.0);
+	Q << dt4 * noise_ax, 0.0, dt3* noise_ax, 0.0,
+		0.0, dt4 * noise_ay, 0.0, dt3 * noise_ay,
+		dt3 * noise_ax, 0.0, dt2*noise_ax, 0.0,
+		0.0, dt3 * noise_ay, 0.0, dt2*noise_ay;
 	//cout << "F,Q updated, initialize ekf" << endl;
 	ekf_.Init(ekf_.x_, ekf_.P_, F, H_send_, R_send_, Q);
 	cout << "initialized, begin prediction step" << endl;
